@@ -6,10 +6,10 @@ require "telegram_real/version"
 Gem::Specification.new do |spec|
   spec.name          = "telegram_real"
   spec.version       = TelegramReal::VERSION
-  spec.authors       = ["Stephan Meijer"]
+  spec.authors       = ["Stephan Meijer", "Fabian de Laender"]
   spec.email         = ["me@stephanmeijer.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
+  spec.summary       = %q{The first real Telegram API client}
   spec.description   = %q{TODO: Write a longer description or delete this line.}
   spec.homepage      = "TODO: Put your gem's website or public repo URL here."
 
