@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Stephan Meijer"]
   spec.email         = ["me@stephanmeijer.com"]
 
-  spec.summary       = %q{The first real Telegram API client}
+  spec.summary       = %q{Easy way to write API's}
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
