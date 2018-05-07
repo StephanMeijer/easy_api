@@ -1,5 +1,5 @@
-require "telegram_real/version"
+require "telegram_real/object"
 
 module TelegramReal
-  # Your code goes here...
+  VERSION = "0.1.0"
 end
