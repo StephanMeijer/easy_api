@@ -1,11 +1,11 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "telegram_real"
+require "easy_api"
 
 Gem::Specification.new do |spec|
-  spec.name          = "telegram_real"
-  spec.version       = TelegramReal::VERSION
+  spec.name          = "easy_api"
+  spec.version       = EasyApi::VERSION
   spec.authors       = ["Stephan Meijer", "Fabian de Laender"]
   spec.email         = ["me@stephanmeijer.com"]
 

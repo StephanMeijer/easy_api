@@ -1,6 +1,6 @@
 require 'forwardable'
 
-module TelegramReal
+module EasyApi
   class MissingRequiredAttributeError < StandardError; end;
   class UnknownAttributeError < StandardError; end;
 
@@ -11,8 +11,8 @@ module TelegramReal
     def_delegators(:attributes, :size, :[], :each)
 
     def initialize(data)
-      raise TelegramReal::MissingRequiredAttributeError unless required_attribute_names.all? { |name| data.keys.include? name }
-      raise TelegramReal::UnknownAttributeError if data.keys.any? { |key| !attribute_names.include? key }
+      raise EasyApi::MissingRequiredAttributeError unless required_attribute_names.all? { |name| data.keys.include? name }
+      raise EasyApi::UnknownAttributeError if data.keys.any? { |key| !attribute_names.include? key }
 
       @attributes = data.map do |k, v|
         next [k, v] unless v.instance_of? Hash

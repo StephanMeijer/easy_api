@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    telegram_real (0.1.0)
+    easy_api (0.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -22,7 +22,7 @@ DEPENDENCIES
   minitest
   pry
   rake (~> 10.0)
-  telegram_real!
+  easy_api!
 
 BUNDLED WITH
    1.16.1

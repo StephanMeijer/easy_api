@@ -1,12 +1,12 @@
 require File.join(__dir__, '../test_helper.rb')
 
-describe TelegramReal::Object do
-  class CObject < TelegramReal::Object
+describe EasyApi::Object do
+  class CObject < EasyApi::Object
     def required_attribute_names
       [:e]
     end
   end
-  class ExampleObject < TelegramReal::Object
+  class ExampleObject < EasyApi::Object
     def required_attribute_names
       [:a, :b]
     end
@@ -27,13 +27,13 @@ describe TelegramReal::Object do
   end
 
   it 'raises error if unknown parameter' do
-    assert_raises TelegramReal::UnknownAttributeError do
+    assert_raises EasyApi::UnknownAttributeError do
       ExampleObject.new(a: 1, b: 'String', c: {e: 123}, f: 3)
     end
   end
 
   it 'raises error if required parameter is missing' do
-    assert_raises TelegramReal::MissingRequiredAttributeError do
+    assert_raises EasyApi::MissingRequiredAttributeError do
       ExampleObject.new(b: 'String')
     end
   end
@@ -48,18 +48,17 @@ describe TelegramReal::Object do
 
   it 'does not raise error if required attributes of child object given' do
     assert example = ExampleObject.new(a: 1, b: 'String', c: {e: 123})
-    binding.pry
   end
 
   it 'raises error if required attributes of child object not given' do
-    assert_raises TelegramReal::MissingRequiredAttributeError do
+    assert_raises EasyApi::MissingRequiredAttributeError do
       assert ExampleObject.new(a: 1, b: 'String', c: {})
     end
   end
 
-  it 'raises error if unknown attributes of child object not given' do
-    assert_raises TelegramReal::UnknownAttributeError do
-      assert ExampleObject.new(a: 1, b: 'String', c: {unknow: true})
+  it 'raises error if unknown attributes of child object given' do
+    assert_raises EasyApi::UnknownAttributeError do
+      assert ExampleObject.new(a: 1, b: 'String', c: {e: 1, unknow: true})
     end
   end
 end
