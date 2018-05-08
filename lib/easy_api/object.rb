@@ -1,4 +1,5 @@
 require 'forwardable'
+require 'ostruct'
 
 module EasyApi
   class MissingRequiredAttributeError < StandardError; end;
