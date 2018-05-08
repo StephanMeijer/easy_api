@@ -19,10 +19,10 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.16)
+  easy_api!
   minitest
   pry
   rake (~> 10.0)
-  easy_api!
 
 BUNDLED WITH
    1.16.1

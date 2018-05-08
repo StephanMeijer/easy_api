@@ -1,5 +1,5 @@
 require "easy_api/object"
 
 module EasyApi
-  VERSION = "0.1.0"
+  VERSION = "0.1.1"
 end
