@@ -17,7 +17,7 @@ module EasyApi
       end
 
       raise EasyApi::UnknownAttributeError if data.keys.any? do |key|
-        !(attribute_names.include?(key) || attribute_names.include?(key.to_sym))
+        !attribute_names.include?(key) && !attribute_names.include?(key.to_sym)
       end
 
       @attributes = data.map do |k, v|
