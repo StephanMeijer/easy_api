@@ -61,4 +61,8 @@ describe EasyApi::Object do
       assert ExampleObject.new(a: 1, b: 'String', c: {e: 1, unknow: true})
     end
   end
+
+  it 'works with strings as keys' do
+    assert ExampleObject.new('a' => 1, b: 'String', c: {e: 123}, d: 3)
+  end
 end

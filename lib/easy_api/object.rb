@@ -12,20 +12,25 @@ module EasyApi
     def_delegators(:attributes, :size, :[], :each)
 
     def initialize(data)
-      raise EasyApi::MissingRequiredAttributeError unless required_attribute_names.all? { |name| data.keys.include? name }
-      raise EasyApi::UnknownAttributeError if data.keys.any? { |key| !attribute_names.include? key }
+      raise EasyApi::MissingRequiredAttributeError unless required_attribute_names.all? do |name|
+        data.keys.include?(name) || data.keys.include?(name.to_s)
+      end
+
+      raise EasyApi::UnknownAttributeError if data.keys.any? do |key|
+        !(attribute_names.include?(key) || attribute_names.include?(key.to_sym))
+      end
 
       @attributes = data.map do |k, v|
         next [k, v] unless v.instance_of? Hash
 
         v =
-          if object_class = schema[k]
+          if object_class = schema[k.to_sym]
             object_class.new(v)
           else
-            OpenStruct.new(v) # TODO: maybe create OpenStructObject which creates OpenStruct instance and parses
+            OpenStruct.new(v)
           end
 
-        [k, v]
+        [k.to_sym, v]
       end.to_h
     end
 
