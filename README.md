@@ -20,7 +20,48 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Example usage of Telegram API:
+```ruby
+class PhotoSize < EasyApi::Object
+  def required_attribute_names
+    [:file_id, :width, :height,]
+  end
+  def optional_attribute_names
+    [:file_size]
+  end
+end
+
+class Video < EasyApi::Object
+  def required_attribute_names
+    [:file_id, :width, :height, :duration]
+  end
+  def optional_attribute_names
+    [:thumb, :mime_type, :file_size]
+  end
+  def schema
+    {thumb: PhotoSize}
+  end
+end
+
+Video.new(
+  file_id: "abc123",
+  width: 720,
+  height: 480,
+  duration: 123,
+  thumb: {
+    file_id: "123abc",
+    width: 128,
+    height: 76,
+    file_size: 123123123
+  },
+  file_size: 123445
+)
+```
+
+Outputs:
+```
+#<Video:0x00007fac3f2ac450 @attributes={:file_id=>"abc123", :width=>720, :height=>480, :duration=>123, :thumb=>#<PhotoSize:0x00007fac3f2ade40 @attributes={:file_id=>"123abc", :width=>128, :height=>76, :file_size=>123123123}>, :file_size=>123445}>
+```
 
 ## Development
 
