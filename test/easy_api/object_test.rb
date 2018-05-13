@@ -63,6 +63,14 @@ describe EasyApi::Object do
   end
 
   it 'works with strings as keys' do
-    assert ExampleObject.new('a' => 1, b: 'String', c: {e: 123}, d: 3)
+    assert ExampleObject.new('a' => 1, b: 'String')
+  end
+
+  it 'works with strings as keys (optional)' do
+    assert ExampleObject.new(a: 1, b: 'String', 'd' => 1234)
+  end
+
+  it 'sets unused optional attributes to nil' do
+    assert_nil ExampleObject.new(a: 1, b: 'String').c
   end
 end

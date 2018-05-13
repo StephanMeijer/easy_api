@@ -21,22 +21,26 @@ module EasyApi
       end
 
       @attributes = data.map do |k, v|
+        [k.to_sym, v]
+      end.map do |k, v|
         next [k, v] unless v.instance_of? Hash
 
         v =
-          if object_class = schema[k.to_sym]
+          if object_class = schema[k]
             object_class.new(v)
           else
             OpenStruct.new(v)
           end
 
-        [k.to_sym, v]
+        [k, v]
       end.to_h
+
+      @attributes = empty_optional_attributes.merge(@attributes)
     end
 
     def method_missing(m, *args, &block)
-      if v = attributes[m]
-        v
+      if attributes.has_key?(m)
+        attributes[m]
       else
         raise UnknownAttributeError
       end
@@ -63,6 +67,12 @@ module EasyApi
     # Please override
     def schema
       {}
+    end
+
+    private
+
+    def empty_optional_attributes
+      optional_attribute_names.map { |attr| [attr, nil] }.to_h
     end
   end
 end
